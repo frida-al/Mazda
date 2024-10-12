@@ -2,7 +2,7 @@
 * Proyecto Planta de autos
 * Frida Arcadia Luna
 * A01711615
-* 09 de septiembre 2024
+* 12 de octubre 2024
 */
 
 
@@ -38,9 +38,18 @@ class Mazda{
      */
     Mazda(int cant, int model): cantidad(cant), modelo(model){};
     //Métodos miembro de la clase
+    int get_cantidad();
+    int get_modelo();
     virtual void imprime_atributos() = 0; //Método abstracto que será sobreescrito
 };
 
+int Mazda::get_cantidad(){
+    return cantidad;
+}
+
+int Mazda::get_modelo(){
+    return modelo;
+}
 //Declaración de la clase CX 3 que hereda de la clase Mazda
 class Cx3:public Mazda{
 
@@ -88,9 +97,10 @@ class Cx3:public Mazda{
  */
 void Cx3::imprime_atributos(){
     std::cout << marca << std::endl;
-    std::cout << "Modelo: " << modelo << std::endl;
+    std::cout << "Quantity: "<< cantidad << std::endl;
+    std::cout << "Year: " << modelo << std::endl;
     std::cout << "Motor: " << motor << std::endl;
-    std::cout << "Potencia: " << potencia << std::endl;
+    std::cout << "Power: " << potencia << std::endl;
     std::cout << "Torque: " << torque << std::endl;
     std::cout << "Sport: " << sport << std::endl;
     std::cout << std::endl;
@@ -240,9 +250,10 @@ class Cx30:public Mazda{
  */
 void Cx30::imprime_atributos(){
     std::cout << marca << std::endl;
-    std::cout << "Modelo: " << modelo << std::endl;
+    std::cout << "Quantity: " << cantidad << std::endl;
+    std::cout << "Year: " << modelo << std::endl;
     std::cout << "Motor: " << motor << std::endl;
-    std::cout << "Potencia: " << potencia << std::endl;
+    std::cout << "Power: " << potencia << std::endl;
     std::cout << "Torque: " << torque << std::endl;
     std::cout << "Sport: " << sport << std::endl;
     std::cout << "Grand Touring: " << grandTouring << std::endl;
@@ -454,9 +465,10 @@ class Cx5:public Mazda{
  */
 void Cx5::imprime_atributos(){
     std::cout << marca << std::endl;
-    std::cout << "Modelo: " << modelo << std::endl;
+    std::cout << "Quantity: " << cantidad << std::endl;
+    std::cout << "Year: " << modelo << std::endl;
     std::cout << "Motor: " << motor << std::endl;
-    std::cout << "Potencia: " << potencia << std::endl;
+    std::cout << "Power: " << potencia << std::endl;
     std::cout << "Torque: " << torque << std::endl;
     std::cout << "Sport: " << sport << std::endl;
     std::cout << "Grand Touring: " << grandTouring << std::endl;
@@ -658,9 +670,10 @@ class Cx50:public Mazda{
  */
 void Cx50::imprime_atributos(){
     std::cout << marca << std::endl;
-    std::cout << "Modelo: " << modelo << std::endl;
+    std::cout << "Quantity: " << cantidad << std::endl;
+    std::cout << "Year: " << modelo << std::endl;
     std::cout << "Motor: " << motor << std::endl;
-    std::cout << "Potencia: " << potencia << std::endl;
+    std::cout << "Power: " << potencia << std::endl;
     std::cout << "Torque: " << torque << std::endl;
     std::cout << std::endl;
 }
@@ -801,9 +814,10 @@ class Cx70:public Mazda{
  */
 void Cx70::imprime_atributos(){
     std::cout << marca << std::endl;
-    std::cout << "Modelo: " << modelo << std::endl;
+    std::cout << "Quantity: " << cantidad << std::endl;
+    std::cout << "Year: " << modelo << std::endl;
     std::cout << "Motor: " << motor << std::endl;
-    std::cout << "Potencia: " << potencia << std::endl;
+    std::cout << "Power: " << potencia << std::endl;
     std::cout << "Torque: " << torque << std::endl;
     std::cout << "Grand Touring: " << grandTouring << std::endl;
     std::cout << std::endl;
