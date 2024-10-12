@@ -11,6 +11,14 @@
 #include <sstream>
 #include <list>
 
+/**
+ * Space complexity O(n)
+ * Time complexity:
+ * 	Access: O(n)
+ * 	Search: O(n)
+ * 	Insertion: O(1)
+ * 	Deletion: O(1)
+*/ 
 template <class T>
 class Stack {
 public:
