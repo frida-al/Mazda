@@ -2,7 +2,7 @@
 * Proyecto Planta de autos
 * Frida Arcadia Luna
 * A01711615
-* 09 de septiembre 2024
+* 12 de octubre 2024
 */
 
 #ifndef PLANTA_H
@@ -13,12 +13,16 @@
 #include <string>
 #include <sstream>
 
+int contador = 0;
+
 //Declaración de clase Planta
 class Planta{
 
     // Atributos públicos
     public:
     Mazda * marca[200]; // Apuntador tipo Mazda para usar polimorfismo
+    std::vector <int> cantidad;
+    std::vector <int> year;
     int cont;
 
     /**
@@ -27,7 +31,7 @@ class Planta{
      * @param 
      * @return Objeto Planta
      */
-    Planta():cont(0){};
+    Planta(): cont(0){};
     //Métodos miembro de la clase
     void agrega(Mazda *);
     void imprime();
@@ -41,9 +45,11 @@ class Planta{
      * @return 
      */
 void Planta::agrega(Mazda * objeto){
-    if (cont < 200){
-        marca[cont] = objeto;
-        cont++;
+    if (contador < 200){
+        marca[contador] = objeto;
+        cantidad.push_back(objeto->get_cantidad());
+        year.push_back(objeto->get_modelo());
+        contador++;
     }
 }
 
@@ -55,7 +61,7 @@ void Planta::agrega(Mazda * objeto){
      * @return 
      */
 void Planta::imprime(){
-    for (int i = 0; i < cont; i++){
+    for (int i = 0; i < contador; i++){
         marca[i] -> imprime_atributos();
     }
 }
