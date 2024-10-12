@@ -35,6 +35,8 @@ void menu(){
 //Función instrucciones
 void instrucciones(){
     std::cout << "\nINSTRUCTIONS" << std::endl;
+    std::cout << "This program runs in English, and it mainly asks you to select a number to choose an option from the menu. ";
+    std::cout << "When you select option two 'Add', it will ask you to introduce certain infromation, but each will tell what input it takes." << std::endl;
 }
 
 int main(){
@@ -126,6 +128,7 @@ int main(){
 
         if(res == 1){
             planta.imprime();
+            continua = true;
         }
         else if (res == 2){
             std::cout << std::endl << "1) Add Cx3" << std::endl << "2) Add Cx5" << std:: endl << 
@@ -133,95 +136,95 @@ int main(){
             std::cin >> res2;
             switch (res2){
             case 1:
-                {std::cout << "Enter the quantity: ";
+                {std::cout << "Enter the quantity (int): ";
                 std::cin >> cantidad;
-                std::cout << "Enter the year: ";
+                std::cout << "Enter the year (int): ";
                 std::cin >> modelo;
-                std::cout << "Enter the engine capacity: ";
+                std::cout << "Enter the engine capacity (float): ";
                 std::cin >> motor;
-                std::cout << "Enter the horse power: ";
+                std::cout << "Enter the horse power (int): ";
                 std::cin >> potencia;
-                std::cout << "Enter the torque: ";
+                std::cout << "Enter torque (int): ";
                 std::cin >> torque;
-                std::cout << "Does it have a sport version? ";
+                std::cout << "Does it have a sport version? (bool) ";
                 std::cin >> sport;
                 Mazda * marca_14 = new Cx3(cantidad, modelo, motor, potencia, torque, sport);
                 planta.agrega(marca_14);}
                 break;
             case 2:
-                {std::cout << "Enter the quantity: ";
+                {std::cout << "Enter the quantity (int): ";
                 std::cin >> cantidad;
-                std::cout << "Enter the year: ";
+                std::cout << "Enter the year (int): ";
                 std::cin >> modelo;
-                std::cout << "Enter the engine capacity: ";
+                std::cout << "Enter the engine capacity (float): ";
                 std::cin >> motor;
-                std::cout << "Does the motor have a turbo version? ";
+                std::cout << "Does the motor have a turbo version? (bool)";
                 std::cin >> turbo;
-                std::cout << "Enter the horse power: ";
+                std::cout << "Enter the horse power (int): ";
                 std::cin >> potencia;
-                std::cout << "Enter the torque: ";
+                std::cout << "Enter torque (int): ";
                 std::cin >> torque;
-                std::cout << "Does it have a sport version? ";
+                std::cout << "Does it have a sport version? (bool)";
                 std::cin >> sport;
-                std::cout << "Does it have a Grand Touring version? ";
+                std::cout << "Does it have a Grand Touring version? (bool) ";
                 std::cin >> grandTouring;
-                std::cout << "Does it have a Signature version? ";
+                std::cout << "Does it have a Signature version? (bool) ";
                 std::cin >> signature;
                 Mazda * marca_15 = new Cx5(cantidad, modelo, motor, turbo, potencia, torque, sport, grandTouring, signature);
                 planta.agrega(marca_15);}
                 break;
             case 3:
-                {std::cout << "Enter the quantity: ";
+                {std::cout << "Enter the quantity (int): ";
                 std::cin >> cantidad;
-                std::cout << "Enter the year: ";
+                std::cout << "Enter the year (int): ";
                 std::cin >> modelo;
-                std::cout << "Enter the engine capacity: ";
+                std::cout << "Enter the engine capacity (float): ";
                 std::cin >> motor;
-                std::cout << "Does the motor have a turbo version? ";
+                std::cout << "Does the motor have a turbo version? (bool) ";
                 std::cin >> turbo;
-                std::cout << "Enter the horse power: ";
+                std::cout << "Enter the horse power (int): ";
                 std::cin >> potencia;
-                std::cout << "Enter the torque: ";
+                std::cout << "Enter torque (int): ";
                 std::cin >> torque;
-                std::cout << "Does it have a sport version? ";
+                std::cout << "Does it have a sport version? (bool) ";
                 std::cin >> sport;
-                std::cout << "Does it have a Grand Touring version? ";
+                std::cout << "Does it have a Grand Touring version? (bool)";
                 std::cin >> grandTouring;
-                std::cout << "Does it have a Signature version? ";
+                std::cout << "Does it have a Signature version? (bool)";
                 std::cin >> signature;
                 Mazda * marca_16 = new Cx30(cantidad, modelo, motor, turbo, potencia, torque, sport, grandTouring, signature);
                 planta.agrega(marca_16);}
                 break;
             case 4:
-                {std::cout << "Enter the quantity: ";
+                {std::cout << "Enter the quantity (int): ";
                 std::cin >> cantidad;
-                std::cout << "Enter the year: ";
+                std::cout << "Enter the year (int): ";
                 std::cin >> modelo;
-                std::cout << "Enter the engine capacity: ";
+                std::cout << "Enter the engine capacity (float): ";
                 std::cin >> motor;
-                std::cout << "Does the motor have a turbo version? ";
+                std::cout << "Does the motor have a turbo version? (bool)";
                 std::cin >> turbo;
-                std::cout << "Enter the horse power: ";
+                std::cout << "Enter the horse power (int): ";
                 std::cin >> potencia;
-                std::cout << "Enter the torque: ";
+                std::cout << "Enter torque (int): ";
                 std::cin >> torque;
                 Mazda * marca_15 = new Cx50(cantidad, modelo, motor, turbo, potencia, torque);
                 planta.agrega(marca_15);}
                 break;
             case 5:
-                {std::cout << "Enter the quantity: ";
+                {std::cout << "Enter the quantity (int): ";
                 std::cin >> cantidad;
-                std::cout << "Enter the year: ";
+                std::cout << "Enter the year (int): ";
                 std::cin >> modelo;
-                std::cout << "Enter the engine capacity: ";
+                std::cout << "Enter the engine capacity (float): ";
                 std::cin >> motor;
-                std::cout << "Does the motor have a turbo version? ";
+                std::cout << "Does the motor have a turbo version? (bool)";
                 std::cin >> turbo;
-                std::cout << "Enter the horse power: ";
+                std::cout << "Enter the horse power (int): ";
                 std::cin >> potencia;
-                std::cout << "Enter the torque: ";
+                std::cout << "Enter torque (int): ";
                 std::cin >> torque;
-                std::cout << "Does it have a Grand Touring version? ";
+                std::cout << "Does it have a Grand Touring version? (bool) ";
                 std::cin >> grandTouring;
                 Mazda * marca_17 = new Cx70(cantidad, modelo, motor, turbo, potencia, torque, grandTouring);
                 planta.agrega(marca_17);}
