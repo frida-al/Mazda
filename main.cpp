@@ -2,7 +2,7 @@
 * Proyecto Planta de autos
 * Frida Arcadia Luna
 * A01711615
-* 09 de septiembre 2024
+* 12 de octubre 2024
 */
 
 /*
@@ -19,6 +19,7 @@
 #include "mazda.h"
 #include "planta.h"
 #include "sorts.h"
+#include "stack.h"
 
 //Función menú
 void menu(){
@@ -26,8 +27,9 @@ void menu(){
     std::cout << "\nMenu: " << std::endl;
     std::cout << "1) Get all" << std::endl;
     std::cout << "2) Add" << std::endl;
-    std::cout << "3) Search" <<std::endl;
-    std::cout << "4) Exit" <<std::endl;
+    std::cout << "3) Search" << std::endl;
+    std::cout << "4) Delete" << std::endl;
+    std::cout << "5) Exit" <<std::endl;
 }
 
 //Función instrucciones
@@ -36,12 +38,14 @@ void instrucciones(){
 }
 
 int main(){
-    int cantidad, modelo, potencia, torque, res, res2, res3; // variables tipo entero
+    int cantidad, modelo, potencia, torque, res, res2, res3, res4; // variables tipo entero
     float motor; // variables tipo float
     bool sport, grandTouring, signature, turbo; // variables bool
     bool continua = true;
     Planta planta;
     Sorts<int> sorts;
+    Sorts<int> sortsYear;
+    StackVector<Mazda*> quantitystack(13);
 
     Cx3 cx3_1(500, 2023, 2.0, 148, 144, true);
     Cx3 cx3_2(200, 2024, 2.0, 148, 144, false);
@@ -89,6 +93,24 @@ int main(){
     planta.agrega(marca_11);
     planta.agrega(marca_12);
     planta.agrega(marca_13);
+
+    //Stack
+    quantitystack.push(marca_1);
+    quantitystack.push(marca_2);
+    quantitystack.push(marca_3);
+    quantitystack.push(marca_4);
+    quantitystack.push(marca_5);
+    quantitystack.push(marca_6);
+    quantitystack.push(marca_7);
+    quantitystack.push(marca_8);
+    quantitystack.push(marca_9);
+    quantitystack.push(marca_10);
+    quantitystack.push(marca_11);
+    quantitystack.push(marca_12);
+    quantitystack.push(marca_13);
+ 
+    std::vector <int> q = sorts.ordenaBurbuja(planta.cantidad);
+    std::vector <int> y = sortsYear.ordenaBurbuja(planta.year);
     
     //Impresión de instrucciones
     instrucciones();
@@ -207,74 +229,36 @@ int main(){
             }
         }
         else if(res == 3){
-            std::cout << std::endl << "1) Search Cx3" << std::endl << "2) Search Cx5" << std:: endl << 
-            "3) Search Cx30" << std::endl << "4) Search Cx50" << std::endl << "5) Search all" << std::endl;
+            std::cout << std::endl << "1) Search per quantity" << std::endl << "2) Search per year" << std:: endl;
             std::cin >> res3;
             switch (res3){
                 case 1:
-                    {std::vector<int> arr;
-                    for (int i = 0; i < 3; i++){
-                        arr.push_back(planta.marca[i]->cantidad);
-                    }
-                    std::string str;
-                    sorts.ordenaBurbuja(arr);
-                    for (int i : arr) {
-                        str += std::to_string(i) + " ";
-                    }
-                    std::cout << str << std::endl;}
+                    for(int i = 0; i < q.size(); i++)
+                        for(int j = 0; j < contador; j++)
+                            if(q[i - 1] != q[i] && q[i] == planta.marca[j]->get_cantidad())
+                                planta.marca[j]->imprime_atributos();
                     break;
                 case 2:
-                    {std::vector<int> arr;
-                    for (int i = 3; i < 6; i++){
-                        arr.push_back(planta.marca[i]->cantidad);
-                    }
-                    std::string str;
-                    sorts.ordenaBurbuja(arr);
-                    for (int i : arr) {
-                        str += std::to_string(i) + " ";
-                    }
-                    std::cout << str << std::endl;}
+                    for(int i = 0; i < y.size(); i++)
+                        for(int j = 0; j < contador; j++)
+                            if(y[i - 1] != y[i] && y[i] == planta.marca[j]->get_modelo())
+                                planta.marca[j]->imprime_atributos();
                     break;
-                case 3:
-                    {std::vector<int> arr;
-                    for (int i = 6; i < 9; i++){
-                        arr.push_back(planta.marca[i]->cantidad);
-                    }
-                    std::string str;
-                    sorts.ordenaBurbuja(arr);
-                    for (int i : arr) {
-                        str += std::to_string(i) + " ";
-                    }
-                    std::cout << str << std::endl;}
-                    break;
-                case 4:
-                    {std::vector<int> arr;
-                    for (int i = 9; i < 12; i++){
-                        arr.push_back(planta.marca[i]->cantidad);
-                    }
-                    std::string str;
-                    sorts.ordenaBurbuja(arr);
-                    for (int i : arr) {
-                        str += std::to_string(i) + " ";
-                    }
-                    std::cout << str << std::endl;}
-                    break;
-                case 5:
-                    {std::vector<int> arr;
-                    for (int i = 0; i < planta.cont; i++){
-                        arr.push_back(planta.marca[i]->cantidad);
-                    }
-                    std::string str;
-                    sorts.ordenaBurbuja(arr);
-                    for (int i : arr) {
-                        str += std::to_string(i) + " ";
-                    }
-                    std::cout << str << std::endl;}
             }
         }
-                
+        else if(res == 4)    {
+            std::cout << std::endl << "How many elements do you want to delete? Pick a number from 1 to 13" << std::endl;
+            std::cin >> res4;
+            std::cout << "Initial stack: " << quantitystack.toString() << std::endl;
+            for (int i = 0; i < res4; i++) {
+                Mazda* topElement = quantitystack.top();
+                quantitystack.pop();
+                delete topElement; // Don't forget to delete the Mazda object to prevent memory leak
+            }
+            std::cout << "Final stack: " << quantitystack.toString() << std::endl;
+        }
 
-        else if (res == 4){ // Opción "Exit"
+        else if (res == 5){ // Opción "Exit"
             for(int i = 0; i < planta.cont; i++){
                 delete planta.marca[i];
                 }
