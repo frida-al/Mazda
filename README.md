@@ -27,7 +27,6 @@ correr en windows: "a.exe"
 ## Correcciones
 
 Versión 1.0: 13 de septiembre de 2024. El programa cuenta inicialmente con 8 clases, de las cuales 5 son clases hijas de la clase principal "Mazda". La clase "Planta" se encarga de manejar el arreglo para el polimorfismo y la clase "Sorts" se encarga de utilizar los algoritmos de ordenamiento.
-*Subcompetencias*. Se implementó el método de ordenamiento Bubble Sort, y se especificó en comentarios la complejidad espacial y temporal que tiene. **Se encuentra en el archivo Sorts.h**. 
+*Subcompetencias*. Se implementó el método de ordenamiento Bubble Sort, y se especificó en comentarios la complejidad espacial y temporal que tiene. **Se encuentra en el archivo sorts.h**. 
 Versión 2.0: 12 de octubre de 2024. El programa utiliza la estructura lineal 'stack' para implementar la opción 'borrar' en el menú. Se borran los objetos completamente del programa mientras este en uso.
-*Subcompetencias*
-
+*Subcompetencias* Se implementó la estructura de datos **Stack** para implementar el delete de objetos, además de que se especificó en comentarios la complejidad espacial y temporal que tiene. **Se encuentra en el archivo stack.h**.
