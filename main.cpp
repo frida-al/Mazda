@@ -33,8 +33,6 @@ void menu(){
 }
 
 //Función instrucciones
-//Complejidad espacial O(1) 
-//Complejidad temporal O(1) porque solo se ejecuta una vez, al inicio del programa
 void instrucciones(){
     std::cout << "\nINSTRUCTIONS" << std::endl;
     std::cout << "This program runs in English, and it mainly asks you to select a number to choose an option from the menu. ";
@@ -120,8 +118,6 @@ int main(){
     instrucciones();
 
     //Ciclo para que el sistema siga corriendo mientras no se elija la opción "Exit"
-    // Complejidad temporal O(n) se repite n veces cuando corres el programa
-    //Complejidad espacial O(n) porque no hay una variable fija que indique específicamente cuántas veces se repite
     while (continua == true)
     {    
 
@@ -240,16 +236,12 @@ int main(){
             std::cin >> res3;
             switch (res3){
                 case 1:
-                    // Complejidad temporal de ambos ciclos O(n^2)
-                    //Complejidad espacial de ambos ciclos O(1)
                     for(int i = 0; i < q.size(); i++)
                         for(int j = 0; j < contador; j++)
                             if(q[i - 1] != q[i] && q[i] == planta.marca[j]->get_cantidad())
                                 planta.marca[j]->imprime_atributos();
                     break;
                 case 2:
-                    // Complejidad temporal de ambos ciclos O(n^2)
-                    //Complejidad espacial de ambos ciclos O(1)
                     for(int i = 0; i < y.size(); i++)
                         for(int j = 0; j < contador; j++)
                             if(y[i - 1] != y[i] && y[i] == planta.marca[j]->get_modelo())
@@ -261,8 +253,6 @@ int main(){
             std::cout << std::endl << "How many elements do you want to delete? Pick a number from 1 to 13" << std::endl;
             std::cin >> res4;
             std::cout << "Initial stack: " << quantitystack.toString() << std::endl;
-            //Complejidad temporal O(n)
-            //Complejidad espacial O(1)
             for (int i = 0; i < res4; i++) {
                 Mazda* topElement = quantitystack.top();
                 quantitystack.pop();
@@ -272,8 +262,6 @@ int main(){
         }
 
         else if (res == 5){ // Opción "Exit"
-            //Complejidad temporal O(n)
-            //Complejidad espacial O(1)
             for(int i = 0; i < planta.cont; i++){
                 delete planta.marca[i];
                 }
