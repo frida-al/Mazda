@@ -17,6 +17,8 @@
  * 	Insertion: O(1)
  * 	Deletion: O(1)
 */ 
+
+//clase stack
 template <class T>
 class Stack {
 public:

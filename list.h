@@ -9,40 +9,56 @@
 #include <string>
 #include <sstream>
 /**
- * Space complexity 
+ * Space complexity: O(n)
  * Time complexity:
- * 	Access: 
- * 	Search: 
- * 	Insertion: 
- * 	Deletion: 
+ * 	Access: O(n)
+ * 	Search: O(n)
+ * 	Insertion: O(1)
+ * 	Deletion: O(1)
 */ 
 
 template <class T> class List;
 
+// Clase Nodo
 template <class T> 
 class Node{
 
    private:
-   Node<T>* head;
     Node<T>(T val) : value(val), next(0) {}
     Node<T>(T val, Node * nxt) : value(val), next(nxt) {}
     Node<T>(const Node <T> &source)  : value(source.value), next(source.next) {}
     T	    value;
 	Node<T> *next;
+    Node<T>* head;
 
 	friend class List<T>;
 
 };
 
+//Clase List
 template <class T>
 class List {
 
+    //Atributos privados
     private:
     Node<T> *head;
 	int 	size;
 
+    //Atributos públicos
     public:
+    /**
+     * Constructor por default
+     * 
+     * @param 
+     * @return List
+     */
     List() : head(0), size(0) {}
+    /**
+     * Destructor
+     * 
+     * @param 
+     * @return 
+     */
     ~List() {
 	    clear();
         }
