@@ -2,7 +2,7 @@
 * Proyecto Planta de autos
 * Frida Arcadia Luna
 * A01711615
-* 12 de octubre 2024
+* 08 de noviembre 2024
 */
 /*
 * Proyecto para Programación de estructuras de datos y algoritmos fundamentales
@@ -18,6 +18,9 @@
 #include "planta.h"
 #include "sorts.h"
 #include "stack.h"
+#include "list.h"
+#include "inventario.h"
+
 //Función menú
 void menu(){
     //Imprime las opciones que va a tener el programa
@@ -26,7 +29,8 @@ void menu(){
     std::cout << "2) Add" << std::endl;
     std::cout << "3) Search" << std::endl;
     std::cout << "4) Delete" << std::endl;
-    std::cout << "5) Exit" <<std::endl;
+    std::cout << "5) Delete from inventory" << std::endl;
+    std::cout << "6) Exit" <<std::endl;
 }
 //Función instrucciones
 //Complejidad espacial O(1) 
@@ -37,13 +41,15 @@ void instrucciones(){
     std::cout << "When you select option two 'Add', it will ask you to introduce certain infromation, but each will tell what input it takes." << std::endl;
 }
 int main(){
-    int cantidad, modelo, potencia, torque, res, res2, res3, res4; // variables tipo entero
+    std::string pieza;
+    int cantidad, cantidad2, modelo, potencia, torque, res, res2, res3, res4, res5; // variables tipo entero
     float motor; // variables tipo float
     bool sport, grandTouring, signature, turbo; // variables bool
     bool continua = true;
     Planta planta;
     Sorts<int> sorts;
     Sorts<int> sortsYear;
+    List<Inventario> listInv;
     StackVector<Mazda*> quantitystack(13);
     Cx3 cx3_1(500, 2023, 2.0, 148, 144, true);
     Cx3 cx3_2(200, 2024, 2.0, 148, 144, false);
@@ -102,6 +108,10 @@ int main(){
  
     std::vector <int> q = sorts.ordenaBurbuja(planta.cantidad);
     std::vector <int> y = sortsYear.ordenaBurbuja(planta.year);
+    std::vector<Inventario> inventario = readFromCSV("inventario.csv");
+    for (const auto& inventario : inventario) {
+        listInv.insertion(inventario);
+    }
     
     //Impresión de instrucciones
     instrucciones();
@@ -116,11 +126,12 @@ int main(){
         std::cin >> res; 
         if(res == 1){
             planta.imprime();
+            std::cout << listInv.toString();
             continua = true;
         }
         else if (res == 2){
             std::cout << std::endl << "1) Add Cx3" << std::endl << "2) Add Cx5" << std:: endl << 
-            "3) Add Cx30" << std::endl << "4) Add Cx50" << std::endl << "5) Add Cx70" << std::endl;
+            "3) Add Cx30" << std::endl << "4) Add Cx50" << std::endl << "5) Add Cx70" << std::endl << "6) Add items to inventory" << std::endl;
             std::cin >> res2;
             switch (res2){
             case 1:
@@ -217,6 +228,14 @@ int main(){
                 Mazda * marca_17 = new Cx70(cantidad, modelo, motor, turbo, potencia, torque, grandTouring);
                 planta.agrega(marca_17);}
                 break;
+            case 6:
+                {std::cout << "Enter the item (string): ";
+                std::cin >> pieza;
+                std::cout << "Enter the amount (int): ";
+                std::cin >> cantidad2;
+                Inventario newItem(pieza, cantidad2);
+                writeToCSV("Inventario.csv", {newItem});}
+                break;
             }
         }
         else if(res == 3){
@@ -254,7 +273,12 @@ int main(){
             }
             std::cout << "Final stack: " << quantitystack.toString() << std::endl;
         }
-        else if (res == 5){ // Opción "Exit"
+        else if(res == 5) {
+            std::cout << std::endl << "Delete the quantity of an item. Give the index and the amount." << std::endl;
+            std::cin >> res5;
+            listInv.deleteAt(res5);
+        }
+        else if (res == 6){ // Opción "Exit"
             //Complejidad temporal O(n)
             //Complejidad espacial O(1)
             for(int i = 0; i < planta.cont; i++){
