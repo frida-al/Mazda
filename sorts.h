@@ -7,6 +7,10 @@
 #ifndef SORTS_H
 #define SORTS_H
 #include <vector>
+
+//Complejidad espacial O(1)1
+//Complejidad temporal O(n^2)
+
 template <class T>
 class Sorts {
 private:
@@ -20,8 +24,7 @@ void Sorts<T>::swap(std::vector<T> &v, int i, int j) {
 	v[i] = v[j];
 	v[j] = aux;
 }
-//Peor de los casos: O(n^2)
-//Mejor de los casos: O(1)
+
 template <class T>
 std::vector<T> Sorts<T>::ordenaBurbuja(const std::vector<T> &source) {
 	std::vector<T> v;
