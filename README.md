@@ -13,7 +13,8 @@ El programa imprime un menú que le permite al usuario elegir qué información 
 2. Agregar autos
 3. Ordenar
 4. Borrar
-5. Salir
+5. Borrar del inventario
+6. Salir
 
 La opción número tres permite ordenar los objetos de cada marca por modelo o por cantidad de autos. La opción cuatro crea un stack de los objetos y pide al usuario cuántos de estos objetos quiere borrar. La opción imprime el stack original y el stack ya modificado, sin embargo, se imprimen las ubicaciones en memoria del objeto. Después de borrar, al escoger la opción 1, los objetos eleminados en la opción anterior ya no aparecen.
 
@@ -31,3 +32,6 @@ Versión 1.0: 13 de septiembre de 2024. El programa cuenta inicialmente con 8 cl
 
 Versión 2.0: 12 de octubre de 2024. El programa utiliza la estructura lineal 'stack' para implementar la opción 'borrar' en el menú. Se borran los objetos completamente del programa mientras este en uso.
 *Subcompetencias* Se implementó la estructura de datos **Stack** para implementar el delete de objetos, además de que se especificó en comentarios la complejidad espacial y temporal que tiene. **Se encuentra en el archivo stack.h**.
+
+Versión 3.0: 08 de noviembre de 2024. Para esta entrega se agregaron las funciones que permiten la lectura de objetos desde un archivo así como la escritura de objetos que han sido creados dentro del programa. Se agregó la clase "Inventario", dónde se leen objetos desde un archivo .csv. Estos objetos son piezas de autos y las cantidades que existen en el inventario. Asímismo, se agregó la clase "List.h", que es una estructura de datos lineal, la lista ligada. Esat lista se crea de los objetos del inventario y pueden eliminarse también. Se completaron los comentarios en el código y se hicieron algunas pequeñas modificaciones. 
+*Subcompetencias* Se implementaron los métodos de lectura y escritura de archivos externos, en este caso, un .csv
