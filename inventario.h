@@ -94,7 +94,7 @@ public:
         if (file.is_open()) {            
             while (std::getline(file, line)) {
                 if (!line.empty()) {
-                    inventario.push_back(Inventario::fromCSV(line)); // Create Person from CSV line
+                    inventario.push_back(Inventario::fromCSV(line)); 
                 }
             }
             file.close();
@@ -113,10 +113,10 @@ public:
      * @return objeto Inventario
      */
 void writeToCSV(const std::string& csv, const std::vector<Inventario>& inventarios) {
-    std::ofstream file(csv, std::ios::app); // Open in append mode
+    std::ofstream file(csv, std::ios::app); 
     if (file.is_open()) {
         for (const auto& inventario : inventarios) {
-            file << inventario.toCSV() << std::endl; // Write each Inventario to the file
+            file << inventario.toCSV() << std::endl; 
         }
         file.close();
     } else {

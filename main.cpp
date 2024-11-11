@@ -109,6 +109,8 @@ int main(){
     std::vector <int> q = sorts.ordenaBurbuja(planta.cantidad);
     std::vector <int> y = sortsYear.ordenaBurbuja(planta.year);
     std::vector<Inventario> inventario = readFromCSV("inventario.csv");
+    // Complejidad temporal O(n)
+    //Comlejidad espacial O(1)
     for (const auto& inventario : inventario) {
         listInv.insertion(inventario);
     }
@@ -269,7 +271,7 @@ int main(){
             for (int i = 0; i < res4; i++) {
                 Mazda* topElement = quantitystack.top();
                 quantitystack.pop();
-                delete topElement; // Don't forget to delete the Mazda object to prevent memory leak
+                delete topElement; 
             }
             std::cout << "Final stack: " << quantitystack.toString() << std::endl;
         }
