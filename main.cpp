@@ -38,7 +38,7 @@ void menu(){
 void instrucciones(){
     std::cout << "\nINSTRUCTIONS" << std::endl;
     std::cout << "This program runs in English, and it mainly asks you to select a number to choose an option from the menu. ";
-    std::cout << "When you select option two 'Add', it will ask you to introduce certain infromation, but each will tell what input it takes. ";
+    std::cout << "When you select option two 'Add', it will ask you to introduce certain information, but each will tell what input it takes. ";
     std::cout << "If it asks you to insert numbers, please do not insert letters, and the other way around" << std::endl;
 }
 int main(){
