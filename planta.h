@@ -28,7 +28,7 @@ class Planta{
     Planta(): cont(0){};
     //Métodos miembro de la clase
     void agrega(Mazda *);
-    void imprime();
+    void imprime(int);
 };
     /**
      * Función agrega
@@ -52,8 +52,8 @@ void Planta::agrega(Mazda * objeto){
      * @param
      * @return 
      */
-void Planta::imprime(){
-    for (int i = 0; i < contador; i++){
+void Planta::imprime(int res6){
+    for (int i = 0; i < res6; i++){
         marca[i] -> imprime_atributos();
     }
 }

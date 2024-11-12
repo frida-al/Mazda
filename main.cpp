@@ -2,7 +2,7 @@
 * Proyecto Planta de autos
 * Frida Arcadia Luna
 * A01711615
-* 08 de noviembre 2024
+* 11 de noviembre 2024
 */
 /*
 * Proyecto para Programación de estructuras de datos y algoritmos fundamentales
@@ -13,7 +13,7 @@
 //Bibliotecas
 #include <iostream> //para imprimir
 #include <string> //para usar strings
-#include <vector>
+#include <vector> //para usar vectores
 #include "mazda.h"
 #include "planta.h"
 #include "sorts.h"
@@ -38,10 +38,13 @@ void menu(){
 void instrucciones(){
     std::cout << "\nINSTRUCTIONS" << std::endl;
     std::cout << "This program runs in English, and it mainly asks you to select a number to choose an option from the menu. ";
-    std::cout << "When you select option two 'Add', it will ask you to introduce certain infromation, but each will tell what input it takes." << std::endl;
+    std::cout << "When you select option two 'Add', it will ask you to introduce certain infromation, but each will tell what input it takes. ";
+    std::cout << "If it asks you to insert numbers, please do not insert letters, and the other way around" << std::endl;
 }
 int main(){
+    //Declaración de variables
     std::string pieza;
+    int res6 = 13;
     int cantidad, cantidad2, modelo, potencia, torque, res, res2, res3, res4, res5; // variables tipo entero
     float motor; // variables tipo float
     bool sport, grandTouring, signature, turbo; // variables bool
@@ -50,7 +53,7 @@ int main(){
     Sorts<int> sorts;
     Sorts<int> sortsYear;
     List<Inventario> listInv;
-    StackVector<Mazda*> quantitystack(13);
+    StackVector<Mazda*> quantityStack(18);
     Cx3 cx3_1(500, 2023, 2.0, 148, 144, true);
     Cx3 cx3_2(200, 2024, 2.0, 148, 144, false);
     Cx3 cx3_3(150, 2025, 2.0, 148, 144, true);
@@ -92,25 +95,26 @@ int main(){
     planta.agrega(marca_12);
     planta.agrega(marca_13);
     //Stack
-    quantitystack.push(marca_1);
-    quantitystack.push(marca_2);
-    quantitystack.push(marca_3);
-    quantitystack.push(marca_4);
-    quantitystack.push(marca_5);
-    quantitystack.push(marca_6);
-    quantitystack.push(marca_7);
-    quantitystack.push(marca_8);
-    quantitystack.push(marca_9);
-    quantitystack.push(marca_10);
-    quantitystack.push(marca_11);
-    quantitystack.push(marca_12);
-    quantitystack.push(marca_13);
+    //La inserción en el stack tiene una complejidad temporal de O(1)
+    quantityStack.push(marca_1);
+    quantityStack.push(marca_2);
+    quantityStack.push(marca_3);
+    quantityStack.push(marca_4);
+    quantityStack.push(marca_5);
+    quantityStack.push(marca_6);
+    quantityStack.push(marca_7);
+    quantityStack.push(marca_8);
+    quantityStack.push(marca_9);
+    quantityStack.push(marca_10);
+    quantityStack.push(marca_11);
+    quantityStack.push(marca_12);
+    quantityStack.push(marca_13);
  
     std::vector <int> q = sorts.ordenaBurbuja(planta.cantidad);
     std::vector <int> y = sortsYear.ordenaBurbuja(planta.year);
     std::vector<Inventario> inventario = readFromCSV("inventario.csv");
     // Complejidad temporal O(n)
-    //Comlejidad espacial O(1)
+    //Comlejidad espacial O(n)
     for (const auto& inventario : inventario) {
         listInv.insertion(inventario);
     }
@@ -127,7 +131,7 @@ int main(){
          // Guardar la opción seleccionada del menu
         std::cin >> res; 
         if(res == 1){
-            planta.imprime();
+            planta.imprime(res6);
             std::cout << listInv.toString();
             continua = true;
         }
@@ -147,10 +151,12 @@ int main(){
                 std::cin >> potencia;
                 std::cout << "Enter torque (int): ";
                 std::cin >> torque;
-                std::cout << "Does it have a sport version? (bool) ";
+                std::cout << "Does it have a sport version? (pick 1 for true and 0 for false) ";
                 std::cin >> sport;
                 Mazda * marca_14 = new Cx3(cantidad, modelo, motor, potencia, torque, sport);
-                planta.agrega(marca_14);}
+                planta.agrega(marca_14);
+                quantityStack.push(marca_14);
+                res6 += 1;}
                 break;
             case 2:
                 {std::cout << "Enter the quantity (int): ";
@@ -159,20 +165,22 @@ int main(){
                 std::cin >> modelo;
                 std::cout << "Enter the engine capacity (float): ";
                 std::cin >> motor;
-                std::cout << "Does the motor have a turbo version? (bool)";
+                std::cout << "Does the motor have a turbo version? (pick 1 for true and 0 for false)";
                 std::cin >> turbo;
                 std::cout << "Enter the horse power (int): ";
                 std::cin >> potencia;
                 std::cout << "Enter torque (int): ";
                 std::cin >> torque;
-                std::cout << "Does it have a sport version? (bool)";
+                std::cout << "Does it have a sport version? (pick 1 for true and 0 for false)";
                 std::cin >> sport;
-                std::cout << "Does it have a Grand Touring version? (bool) ";
+                std::cout << "Does it have a Grand Touring version? (pick 1 for true and 0 for false) ";
                 std::cin >> grandTouring;
-                std::cout << "Does it have a Signature version? (bool) ";
+                std::cout << "Does it have a Signature version? (pick 1 for true and 0 for false) ";
                 std::cin >> signature;
                 Mazda * marca_15 = new Cx5(cantidad, modelo, motor, turbo, potencia, torque, sport, grandTouring, signature);
-                planta.agrega(marca_15);}
+                planta.agrega(marca_15);
+                quantityStack.push(marca_15);
+                res6 += 1;}
                 break;
             case 3:
                 {std::cout << "Enter the quantity (int): ";
@@ -181,20 +189,22 @@ int main(){
                 std::cin >> modelo;
                 std::cout << "Enter the engine capacity (float): ";
                 std::cin >> motor;
-                std::cout << "Does the motor have a turbo version? (bool) ";
+                std::cout << "Does the motor have a turbo version? (pick 1 for true and 0 for false) ";
                 std::cin >> turbo;
                 std::cout << "Enter the horse power (int): ";
                 std::cin >> potencia;
                 std::cout << "Enter torque (int): ";
                 std::cin >> torque;
-                std::cout << "Does it have a sport version? (bool) ";
+                std::cout << "Does it have a sport version? (pick 1 for true and 0 for false) ";
                 std::cin >> sport;
-                std::cout << "Does it have a Grand Touring version? (bool)";
+                std::cout << "Does it have a Grand Touring version? (pick 1 for true and 0 for false) ";
                 std::cin >> grandTouring;
-                std::cout << "Does it have a Signature version? (bool)";
+                std::cout << "Does it have a Signature version? (pick 1 for true and 0 for false) ";
                 std::cin >> signature;
                 Mazda * marca_16 = new Cx30(cantidad, modelo, motor, turbo, potencia, torque, sport, grandTouring, signature);
-                planta.agrega(marca_16);}
+                planta.agrega(marca_16);
+                quantityStack.push(marca_16);
+                res6 += 1;}
                 break;
             case 4:
                 {std::cout << "Enter the quantity (int): ";
@@ -203,14 +213,16 @@ int main(){
                 std::cin >> modelo;
                 std::cout << "Enter the engine capacity (float): ";
                 std::cin >> motor;
-                std::cout << "Does the motor have a turbo version? (bool)";
+                std::cout << "Does the motor have a turbo version? (pick 1 for true and 0 for false) ";
                 std::cin >> turbo;
                 std::cout << "Enter the horse power (int): ";
                 std::cin >> potencia;
                 std::cout << "Enter torque (int): ";
                 std::cin >> torque;
-                Mazda * marca_15 = new Cx50(cantidad, modelo, motor, turbo, potencia, torque);
-                planta.agrega(marca_15);}
+                Mazda * marca_18 = new Cx50(cantidad, modelo, motor, turbo, potencia, torque);
+                planta.agrega(marca_18);
+                quantityStack.push(marca_18);
+                res6 += 1;}
                 break;
             case 5:
                 {std::cout << "Enter the quantity (int): ";
@@ -219,16 +231,18 @@ int main(){
                 std::cin >> modelo;
                 std::cout << "Enter the engine capacity (float): ";
                 std::cin >> motor;
-                std::cout << "Does the motor have a turbo version? (bool)";
+                std::cout << "Does the motor have a turbo version? (pick 1 for true and 0 for false) ";
                 std::cin >> turbo;
                 std::cout << "Enter the horse power (int): ";
                 std::cin >> potencia;
                 std::cout << "Enter torque (int): ";
                 std::cin >> torque;
-                std::cout << "Does it have a Grand Touring version? (bool) ";
+                std::cout << "Does it have a Grand Touring version? (pick 1 for true and 0 for false) ";
                 std::cin >> grandTouring;
                 Mazda * marca_17 = new Cx70(cantidad, modelo, motor, turbo, potencia, torque, grandTouring);
-                planta.agrega(marca_17);}
+                planta.agrega(marca_17);
+                quantityStack.push(marca_17);
+                res6 += 1;}
                 break;
             case 6:
                 {std::cout << "Enter the item (string): ";
@@ -265,18 +279,22 @@ int main(){
         else if(res == 4)    {
             std::cout << std::endl << "How many elements do you want to delete? Pick a number from 1 to 13" << std::endl;
             std::cin >> res4;
-            std::cout << "Initial stack: " << quantitystack.toString() << std::endl;
+            if (res4 < 1 || res4 > 13) {
+                std::cout << "Invalid number of elements to delete." << std::endl;
+            }
+            std::cout << "Initial stack: " << quantityStack.toString() << std::endl;
             //Complejidad temporal O(n)
             //Complejidad espacial O(1)
             for (int i = 0; i < res4; i++) {
-                Mazda* topElement = quantitystack.top();
-                quantitystack.pop();
+                Mazda* topElement = quantityStack.top();
+                quantityStack.pop();
                 delete topElement; 
             }
-            std::cout << "Final stack: " << quantitystack.toString() << std::endl;
+            std::cout << "Final stack: " << quantityStack.toString() << std::endl;
+            res6 -= res4;
         }
         else if(res == 5) {
-            std::cout << std::endl << "Delete the quantity of an item. Give the index and the amount." << std::endl;
+            std::cout << std::endl << "Which item do you want to delete?" << std::endl;
             std::cin >> res5;
             listInv.deleteAt(res5);
         }
