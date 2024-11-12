@@ -43,10 +43,14 @@ Como estructuras, se utilizan principalemte dos, una lista ligada y un stack. Se
  * 	Search: O(n)
  * 	Insertion: O(1)
  * 	Deletion: O(1)
-- Linked list. Tiene complejidad espacial de O(n), y complejidad temporal en el peor de los casos de la siguiente manera:
- * Access: O(n)
- * 	Search: O(n)
+- Linked list. Tiene complejidad espacial de O(m), y complejidad temporal en el peor de los casos de la siguiente manera:
+ * Access: O(m)
+ * 	Search: O(m)
  * 	Insertion: O(1)
  * 	Deletion: O(1)
 Como algoritmo de ordenamiento utilicé Bubble Sort, ya que no utiliza memoria adicional, lo que presenta una ventaja frente al Merge Sort, además de que no se maneja una cantidad muy grande de datos. El algoritmo ordena los datos de los autos por dos parámetros, ya sea por cantidad o por modelo. Después, la opción 3 del menú le permite al usuario aplicar el filtro.
 - Bubble sort. Tiene complejidad espacial de O(1) y complejidad temporal en el peor de los casos de O(n^2).
+
+Al comenzar el programa, un ciclo for se encarga de cargar los objetos provenientes del archivo .csv a la lista ligada. Este ciclo for tiene una complejidad temporal de O(m), ya que no es valor fijo porque se pueden ir agregando objetos al archivo externo. La complejidad espacial también es O(n), ya que se guardan todos los objetos y varían dependiendo de cuántos de estos hay en el archivo .csv.
+
+En resumen, el programa tiene una complejidad temporal total de O(2n + n^2 + 3m). 
